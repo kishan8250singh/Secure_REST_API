@@ -15,7 +15,7 @@ public class StudentUser {
     private Long id;
 
     @Column(unique = true)
-    private String Username;
+    private String username;
 
     private String email;
 
@@ -23,7 +23,5 @@ public class StudentUser {
     private String password;
     private String role; // e.g. "ROLE_USER", "ROLE_ADMIN"
 
-    public String getName() {
-        return Username;
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.springboot.demoSpring.mapper;
+package com.springboot.demoSpring.Mapper;
 
 import com.springboot.demoSpring.DTO.StudentDto;
 import com.springboot.demoSpring.entity.StudentUser;
@@ -13,6 +13,8 @@ public class StudentMapper {
     }
 
     public static StudentDto toDto(StudentUser user) {
-        return new StudentDto(user.getUsername(), user.getEmail());
+        return new StudentDto(
+                user.getUsername(),
+                user.getEmail());
     }
 }

@@ -7,8 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 public class StudentDto {
 
-    private String Username;
+    private String username;
     private String email;
-
-
 }

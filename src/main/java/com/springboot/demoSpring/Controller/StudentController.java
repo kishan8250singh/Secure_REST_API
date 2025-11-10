@@ -2,7 +2,6 @@ package com.springboot.demoSpring.controller;
 
 import com.springboot.demoSpring.DTO.StudentDto;
 import com.springboot.demoSpring.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +10,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/student")
 public class StudentController {
+    private final StudentService studentService;
 
-    @Autowired
-    private StudentService studentService;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @PostMapping
     public StudentDto createStudent(@RequestBody StudentDto dto) {
+        System.out.println("📩 Incoming JSON DTO: " + dto);
         return studentService.createStudent(dto);
     }
 
