@@ -1,20 +1,18 @@
-package com.springboot.demoSpring.Mapper;
+package com.springboot.demoSpring.mapper;
 
 import com.springboot.demoSpring.DTO.StudentDto;
-import com.springboot.demoSpring.entity.Student;
+import com.springboot.demoSpring.entity.StudentUser;
 
 public class StudentMapper {
-    public static StudentDto toDto(Student student){
-        StudentDto dto = new StudentDto();
-        dto.setName(student.getName());
-        dto.setEmail(student.getEmail());
-        return dto;
+
+    public static StudentUser toEntity(StudentDto dto) {
+        StudentUser user = new StudentUser();
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        return user;
     }
 
-    public  static Student toEntity(StudentDto dto){
-        Student std = new Student();
-        std.setEmail(dto.getEmail());
-        std.setName(dto.getName());
-        return std;
+    public static StudentDto toDto(StudentUser user) {
+        return new StudentDto(user.getUsername(), user.getEmail());
     }
 }

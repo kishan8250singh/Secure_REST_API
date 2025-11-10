@@ -1,31 +1,47 @@
-package com.springboot.demoSpring.Controller;
+package com.springboot.demoSpring.controller;
 
 import com.springboot.demoSpring.DTO.StudentDto;
 import com.springboot.demoSpring.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+
 @RestController
-@RequestMapping("api/student")
+@RequestMapping("/api/student")
 public class StudentController {
-    private final StudentService studentService;
-    public StudentController(StudentService studentService){
-        this.studentService = studentService;
-    }
+
+    @Autowired
+    private StudentService studentService;
+
     @PostMapping
-    public StudentDto create_Student(@RequestBody StudentDto studentDto){
-        return studentService.createStudent(studentDto);
+    public StudentDto createStudent(@RequestBody StudentDto dto) {
+        return studentService.createStudent(dto);
     }
+
     @GetMapping
-    public List<StudentDto> GetAll_Student(){
-        return studentService.getAllStudent();
+    public List<StudentDto> getAllStudents() {
+        return studentService.getAllStudents();
     }
+    @GetMapping("/paged")
+    public Page<StudentDto> getStudentsPaged(@RequestParam(defaultValue = "0") int page,
+                                             @RequestParam(defaultValue = "5") int size) {
+        return studentService.getStudentsPaged(page, size);
+    }
+
     @PutMapping("/{id}")
-    public StudentDto update_Student(@PathVariable Long id, @RequestBody StudentDto studentDto){
-        return studentService.UpdateStudent(id,studentDto);
+    public StudentDto updateStudent(@PathVariable Long id, @RequestBody StudentDto dto) {
+        return studentService.updateStudent(id, dto);
     }
+
     @DeleteMapping("/{id}")
-    public String delete_Student(@PathVariable Long id){
-        studentService.DeleteStudent(id);
-        return "Student with id "+id+ "deleted successfully !" ;
+    public String deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
+        return "Student with id " + id + " deleted successfully!";
+    }
+    @GetMapping("/{id}")
+    public StudentDto getStudentById(@PathVariable Long id) {
+        return studentService.getStudentById(id);
     }
 }

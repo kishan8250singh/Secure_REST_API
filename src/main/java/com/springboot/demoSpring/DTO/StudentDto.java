@@ -5,11 +5,10 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class StudentDto {
 
-    private String name;
+    private String Username;
     private String email;
+
 
 }
